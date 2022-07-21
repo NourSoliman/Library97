@@ -1,0 +1,105 @@
+#head1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: linear-gradient(#42275a , #734b6d);
+}
+#show-form {
+    padding: 5px 10px;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background: linear-gradient(#000428 , #004e92);
+    color: white;
+    cursor: pointer;
+}
+#book-title , #book-author , #pages-num , #image-src {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+#container {
+    background-color: white;
+    height: 200vh;
+    width: 200vh;
+    margin: auto;
+    color: black;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    gap: 50px;
+
+}
+#form {
+    border: 2px solid gainsboro;
+    padding: 10px;
+    font-family: cursive;
+    background: linear-gradient(#2b5876 , #4e4376);
+    color: white;
+
+
+}
+#submit {
+    padding: 5px 10px;
+    font-family: cursive;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: #015C92;
+}
+#delete {
+padding: 5px 10px;
+font-family: cursive;
+border: none;
+cursor: pointer;
+color: black;
+background: #8B4C70;
+}
+#edit {
+    margin-left: 62px;
+    padding: 5px 10px;
+    font-family: cursive;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: #522157;
+    
+
+}
+#buttons {
+    display: flex;
+
+}
+#div-contain {
+    font-family: cursive;
+}
+#container {
+    width: 80%;
+    height: auto;
+    flex-wrap: wrap;
+    display: flex;
+    flex: 1;
+    background-color: gainsboro;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 20px;
+}
+img {
+    width: 200px;
+}
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background:linear-gradient(#42275a , #734b6d);
+    color: white;
+    text-align: center;
+    font-size: 20px;
+}

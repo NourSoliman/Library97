@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="normlize.css">
+    <!-- <link rel="stylesheet" href="css/all.min.css"> -->
+</head>
+<body> 
+    <h1 id="head1">Library Project!</h1>
+    <button id="show-form">Form</button>
+    <form id="form" class="css-info" >
+        <label id="head">Title</label>
+        <input type="text" id="book-title" placeholder="Title" value="" required/>
+        <label id="head">Author</label>
+        <input type="text" id="book-author" placeholder="author Name" value="" required/>
+        <label id="head">Pages</label>
+        <input type="text" pattern="[0-999]" placeholder="pages number" id="pages-num" value="" />
+        <label >Image</label>
+        <input type="text" id="image-src" value="" placeholder="insert ur picture link"/>
+        <hr>
+        <div class="read-stat">
+            <label><input type="radio" name="checker" value="0" id="read" required/>Read</label>
+            <label><input type="radio" name="checker" value="1" id="read" required/>Not Read</label>
+        </div>
+        <div id="button-div">
+            <button type="submit" id="submit" onclick="addbook()">Submit</button>
+        </div>
+    </form>
+    <hr>
+    <div id="container">
+    </div>
+    <footer id="foot">
+        Copyright © Nour Soliman
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
