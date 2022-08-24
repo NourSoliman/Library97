@@ -4,9 +4,6 @@ let buttonSum = document.getElementById(`submit`)
 showForm.style.display =`none`
 // buttonSum.addEventListener(`click` , addbook)
 buttonForm.addEventListener(`click` , showform);
-
-
-let myLibrary = [];
 class Book {
     constructor(title , author , pages , readBook , picture) {
     this.author = author;
@@ -14,17 +11,18 @@ class Book {
     this.pages = pages;
     this.readBook = readBook;
     this.picture = picture;
-}
-}
-function addBockToLibrary(book) {
-    myLibrary.push(book);
-}
+}}
 let book1 = new Book(`The Great Gatsby`, `Nour` , `255` , `Read` , `https://upload.wikimedia.org/wikipedia/commons/a/a0/The_Great_Gatsby_cover_1925_%281%29.jpg`)
 let book2 = new Book(`To Kill a Mockingbird` , `Nour` , `255` , `Not Read` , `https://cdn2.penguin.com.au/covers/original/9781784752637.jpg`)
+let myLibrary = [book1 , book2];
 
-
-addBockToLibrary(book1);
-addBockToLibrary(book2);
+function addBockToLibrary(book) {
+    myLibrary.push(book);
+    addLocal(myLibrary)
+}
+if (localStorage.getItem(`tasks`)) {
+    myLibrary = JSON.parse(localStorage.getItem(`tasks`))
+}
 // loop to create html Elements
 function loop() {
     for (let i = 0; i < myLibrary.length ; i++) {
@@ -65,6 +63,7 @@ function loop() {
 // add delete button
         let deleteButton = document.createElement(`button`)
         deleteButton.setAttribute(`id` , `delete`)
+        deleteButton.setAttribute(`class` , `deleted`)
         deleteButton.innerHTML = `delete`
         let deleteDiv = document.createElement(`div`)
         deleteDiv.setAttribute(`id` , `delete-div`)
@@ -112,10 +111,16 @@ function loop() {
 
 
         
-        deleteButton.addEventListener(`click` , () => {
-            let index = deleteButton.getAttribute(`delete`);
-            myLibrary.splice(index , 1);
-            divContain.style.display = `none`
+        // deleteButton.addEventListener(`click` , () => {
+        //     let index = deleteButton.getAttribute(`delete`);
+        //     myLibrary.splice(index , 1);
+        //     divContain.style.display = `none`
+        // })
+        deleteButton.addEventListener(`click` , (e) => {
+            if (e.target.classList.contains(`deleted`)) {
+                e.target.parentElement.remove();
+                divContain.style.display = `none`
+            }
         })
         editButton.addEventListener(`click` ,  () => {
             let item = editButton.getAttribute(`item`)
@@ -164,6 +169,16 @@ function addbook() {
     buttonForm.style.display = `block`
     document.getElementById('container').innerHTML = null;
     loop();
+}
+//add local storage 
+function addLocal(myLibrary) {
+    window.localStorage.setItem(`tasks`, JSON.stringify(myLibrary))
+}
+function getLocal() {
+    let data = window.localStorage.getItem(`tasks`) 
+    if (data) {
+        let tasks = JSON.parse(data)
+    }
 }
 loop()
 
