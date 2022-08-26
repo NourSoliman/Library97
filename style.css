@@ -1,9 +1,13 @@
+body {
+    margin: 0px;
+}
 #head1 {
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     background: linear-gradient(#42275a , #734b6d);
+    margin: 0px;
 }
 #show-form {
     padding: 5px 10px;
@@ -13,6 +17,7 @@
     background: linear-gradient(#000428 , #004e92);
     color: white;
     cursor: pointer;
+    margin: 2px;
 }
 #book-title , #book-author , #pages-num , #image-src {
     border: 1px solid black;

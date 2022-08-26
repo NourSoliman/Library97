@@ -1,8 +1,9 @@
 let buttonForm = document.getElementById(`show-form`)
 let showForm = document.getElementById(`form`)
 let buttonSum = document.getElementById(`submit`)
+let form = document.getElementsByTagName(`form`) [0];
 showForm.style.display =`none`
-// buttonSum.addEventListener(`click` , addbook)
+form.addEventListener(`submit` , addbook);
 buttonForm.addEventListener(`click` , showform);
 class Book {
     constructor(title , author , pages , readBook , picture) {

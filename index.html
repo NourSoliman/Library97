@@ -18,7 +18,7 @@
         <label id="head">Author</label>
         <input type="text" id="book-author" placeholder="author Name" value="" required/>
         <label id="head">Pages</label>
-        <input type="text" pattern="[0-999]" placeholder="pages number" id="pages-num" value="" />
+        <input type="number"  max="9000" placeholder="pages number" id="pages-num" value="" required />
         <label >Image</label>
         <input type="text" id="image-src" value="" placeholder="insert ur picture link"/>
         <hr>
@@ -27,7 +27,7 @@
             <label><input type="radio" name="checker" value="1" id="read" required/>Not Read</label>
         </div>
         <div id="button-div">
-            <button type="button" id="submit" onclick="addbook()">Submit</button>
+            <button type="submit" id="submit">Submit</button>
         </div>
     </form>
     <hr>
