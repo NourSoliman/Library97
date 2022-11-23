@@ -6,12 +6,13 @@ showForm.style.display =`none`
 form.addEventListener(`submit` , addbook);
 buttonForm.addEventListener(`click` , showform);
 class Book {
-    constructor(title , author , pages , readBook , picture) {
+    constructor(title , author , pages , readBook , picture , id) {
     this.author = author;
     this.title = title;
     this.pages = pages;
     this.readBook = readBook;
     this.picture = picture;
+    this.id = id
 }}
 let book1 = new Book(`The Great Gatsby`, `Nour` , `255` , `Read` , `https://upload.wikimedia.org/wikipedia/commons/a/a0/The_Great_Gatsby_cover_1925_%281%29.jpg`)
 let book2 = new Book(`To Kill a Mockingbird` , `Nour` , `255` , `Not Read` , `https://cdn2.penguin.com.au/covers/original/9781784752637.jpg`)
@@ -21,8 +22,9 @@ function addBockToLibrary(book) {
     myLibrary.push(book);
     addLocal(myLibrary)
 }
-if (localStorage.getItem(`tasks`)) {
-    myLibrary = JSON.parse(localStorage.getItem(`tasks`))
+// getLocal(myLibrary)
+if (localStorage.getItem(`books`)) {
+    myLibrary = JSON.parse(localStorage.getItem(`books`))
 }
 // loop to create html Elements
 function loop() {
@@ -104,25 +106,24 @@ function loop() {
         divContain.appendChild(iamgeDiv)
         divContain.appendChild(divContainer)
 
-
-
-
         let bookContainer = document.getElementById(`container`)
         bookContainer.appendChild(divContain)
-
-
         
-        // deleteButton.addEventListener(`click` , () => {
-        //     let index = deleteButton.getAttribute(`delete`);
-        //     myLibrary.splice(index , 1);
-        //     divContain.style.display = `none`
-        // })
-        deleteButton.addEventListener(`click` , (e) => {
-            if (e.target.classList.contains(`deleted`)) {
-                e.target.parentElement.remove();
-                divContain.style.display = `none`
-            }
+        deleteButton.setAttribute('data-item-index', i);
+        deleteButton.addEventListener(`click` , () => {
+            let index = deleteButton.getAttribute(`data-item-index`);
+            myLibrary.splice(index , 1);
+            divContain.style.display = `none`
+            addLocal(myLibrary)
+            console.log(index);
         })
+        // deleteButton.addEventListener(`click` , (e) => {
+        //         if (e.target.classList.contains(`deleted`)) {
+        //                 e.target.parentElement.remove();
+        //                 divContain.style.display = `none`
+        //             }
+        //             addLocal(myLibrary)
+        //         })
         editButton.addEventListener(`click` ,  () => {
             let item = editButton.getAttribute(`item`)
             if(myLibrary[item].readBook == `Read`) {
@@ -134,6 +135,7 @@ function loop() {
                 readP.innerHTML = myLibrary[item].readBook
                 readP.style.color = `green`
             }
+            addLocal(myLibrary)
         })
 
     }
@@ -146,12 +148,14 @@ function showform() {
     showForm.style.display = `block`
     buttonForm.style.display = `none`
 }
-function addbook() {
+function addbook(e) {
+    e.preventDefault()
     let newTitle = document.getElementById(`book-title`).value;
     let newAuthor = document.getElementById(`book-author`).value;
     let newPage = document.getElementById(`pages-num`).value;
     let newRead;
     let newPic;
+    let id = Math.random();
     let checked = document.querySelector(`input[name="checker"]:checked`)
     if(checked.value == 0) {
         newRead = `Read`}
@@ -164,7 +168,7 @@ function addbook() {
         } else {
             newPic = newSrc;
         }
-    let newBook97 = new Book(newTitle , newAuthor , newPage , newRead , newPic )
+    let newBook97 = new Book(newTitle , newAuthor , newPage , newRead , newPic , id )
     addBockToLibrary(newBook97)
     showForm.style.display = `none`
     buttonForm.style.display = `block`
@@ -173,10 +177,10 @@ function addbook() {
 }
 //add local storage 
 function addLocal(myLibrary) {
-    window.localStorage.setItem(`tasks`, JSON.stringify(myLibrary))
-}
+    window.localStorage.setItem(`books`, JSON.stringify(myLibrary))
+    }
 function getLocal() {
-    let data = window.localStorage.getItem(`tasks`) 
+    let data = window.localStorage.getItem(`books`) 
     if (data) {
         let tasks = JSON.parse(data)
     }
